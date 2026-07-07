@@ -39,8 +39,4 @@ else
 {
     Console.WriteLine("Хорошая локация");
 }
-if (location == "Лаборатория")
-{
-    Console.WriteLine("да ты у нас киберспортсмен");
-}
 Console.ReadKey();
