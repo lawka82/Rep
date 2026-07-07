@@ -1,0 +1,14 @@
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\day1.1.GeneratedMSBuildEditorConfig.editorconfig
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\day1.1.AssemblyInfoInputs.cache
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\day1.1.AssemblyInfo.cs
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\day1.1.csproj.CoreCompileInputs.cache
+C:\journey\day1.1\day1.1\bin\Debug\net10.0\day1.1.exe
+C:\journey\day1.1\day1.1\bin\Debug\net10.0\day1.1.deps.json
+C:\journey\day1.1\day1.1\bin\Debug\net10.0\day1.1.runtimeconfig.json
+C:\journey\day1.1\day1.1\bin\Debug\net10.0\day1.1.dll
+C:\journey\day1.1\day1.1\bin\Debug\net10.0\day1.1.pdb
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\day1.1.dll
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\refint\day1.1.dll
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\day1.1.pdb
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\day1.1.genruntimeconfig.cache
+C:\journey\day1.1\day1.1\obj\Debug\net10.0\ref\day1.1.dll

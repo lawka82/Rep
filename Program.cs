@@ -1,0 +1,11 @@
+﻿Console.WriteLine("Анкета по EFT");
+Console.Write("Какая твоя Любимая локация:");
+string? location = Console.ReadLine();
+Console.Write("А любимое оружие какое?:");
+string? FavWeapon = Console.ReadLine();
+Console.Write("А калибр какой нравиться?:");
+string? calibrText = Console.ReadLine();
+Console.WriteLine("");
+Console.WriteLine("Вот что ты ответил:");
+Console.WriteLine($"Локация:{location}, Любимое оружие: {FavWeapon}, Любимый калибр: {calibrText}");
+Console.ReadKey();
