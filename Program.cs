@@ -1,15 +1,28 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿Weapon[] weapons = new Weapon[]
+{
+    new Weapon { Name = "M4A1", Caliber = "5.56x45", Damage = 54 },
+    new Weapon { Name = "AK74", Caliber = "5.45x39", Damage = 48 },
+    new Weapon { Name = "AXMC", Caliber = ".338 Lapua", Damage = 112 },
+    new Weapon { Name = "SIG SPEAR", Caliber = "6.8x51", Damage = 60 }
+};
 
-string[] Listweapons = new string[] { "M4A1", "AK74", "AXMC", "SIG SPEAR" };
-string[] Listmaps = { "Резерв", "Таможня", "Развязка", "Берег" };
-const int maxtry = 4;
-for (int s = 0; s < maxtry; s++)
+// Создаём объекты карт
+Map[] maps = new Map[]
+{
+    new Map { Name = "Резерв", Difficult = "Средняя", Tip = "Бегом в меченки" },
+    new Map { Name = "Таможня", Difficult = "Высокая", Tip = "Пвп в общагах это топ" },
+    new Map { Name = "Развязка", Difficult = "Низкая", Tip = "Хороша для новичков" },
+    new Map { Name = "Берег", Difficult = "Средняя", Tip = "Курорты полны лута" }
+};
+
+const int maxAttempts = 4;
+for (int s = 0; s < maxAttempts; s++)
 {
     Console.WriteLine("\nВыбери тип запроса:");
     Console.WriteLine("1 - Инфо о локации");
     Console.WriteLine("2 - Инфо об оружии");
     Console.WriteLine("0 - выход");
-    Console.Write("Твой выбор");
+    Console.Write("Твой выбор: ");
     string? choice = Console.ReadLine();
 
     if (choice == "0")
@@ -19,59 +32,54 @@ for (int s = 0; s < maxtry; s++)
     }
     else if (choice == "1")
     {
-        Console.Write("Введи название локации:");
+        Console.Write("Ввидите название локации");
         string? location = Console.ReadLine();
-        if (location != null && Contains(Listmaps, location))
-        {
-            Printlocation(location);
-        }
-        else
-        {
-            Console.WriteLine($"Локация '{location}' не найдена в списке");
-        }
-
+        Map? foundMap = FindMap(maps, location);
+        if (foundMap != null)
+            PrintMapInfo(foundMap);
+        else { Console.WriteLine($"локация {location} не найдена"); }
     }
     else if (choice == "2")
     {
-        Console.Write("Введи название оружия: ");
-        string? weapon = Console.ReadLine();
-        if (weapon != null && Contains(Listweapons, weapon))
-        {
-            PrintWeaponinfo(weapon);
-        }
-        else
-        {
-            Console.WriteLine($"Оружие '{weapon}' отсутствует в базе.");
-        }
+        Console.WriteLine("Выберете оружие");
+        string? weaponName = Console.ReadLine();
+        Weapon? foundWeapon = FindWeapon(weapons, weaponName);
+        if (foundWeapon != null)
+            PrintWeaponInfo(foundWeapon);
+        else { Console.WriteLine($"оружие {weaponName} не найдено"); }
     }
-    else
+    else { Console.WriteLine("Неверный ввод"); }
+}
+static Weapon? FindWeapon(Weapon[] weapons, string name)
+{
+    foreach (Weapon w in weapons)
     {
-        Console.WriteLine("Неверный ввод. Попробуйте снова.");
+        if (w.Name == name) return w;
     }
+    return null;
 }
-static bool Contains(string[] array, string item)
+static Map? FindMap(Map[] maps, string name)
 {
-    foreach (string element in array)
+    foreach (Map m in maps)
     {
-        if (element == item) return true;
+        if (m.Name.Equals(name)) return m;
     }
-    return false;
+    return null;
 }
-static void PrintWeaponinfo(string weapon)
+static void PrintWeaponInfo(Weapon w)
 {
-    if (weapon == "M4A1")
-        Console.WriteLine("M4A1 — стабильная классика НАТО.");
-    else if (weapon == "AK74")
-        Console.WriteLine("AK74 — надёжный друг советского разлива.");
-    else
-        Console.WriteLine($"{weapon} — достойный выбор.");
+    Console.WriteLine($"Оружие: {w.Name}");
+    Console.WriteLine($"Калибр: {w.Caliber}");
+    Console.WriteLine($"Урон: {w.Damage}");
+    if (w.Name == "M4A1")
+        Console.WriteLine("Базовая база");
+    else if (w.Name == "AK74")
+        Console.WriteLine("Советское качество");
 }
-static void Printlocation(string location)
+static void PrintMapInfo(Map m)
 {
-    if (location == "Таможня")
-        Console.WriteLine("Пвп в общагах это топ");
-    else if (location == "Резерв")
-        Console.WriteLine("Бегом в меченки");
-    else
-        Console.WriteLine($"{location} - Хорошая карта");
+    Console.WriteLine($"Локация: {m.Name}");
+    Console.WriteLine($"Сложность: {m.Difficult}");
+    Console.WriteLine($"Совет: {m.Tip}");
 }
+Console.ReadKey();
