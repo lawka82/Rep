@@ -1,42 +1,77 @@
-﻿Console.WriteLine("Анкета по EFT");
-Console.Write("Какая твоя Любимая локация:");
-string? location = Console.ReadLine();
-Console.Write("А любимое оружие какое?:");
-string? FavWeapon = Console.ReadLine();
-Console.Write("А калибр какой нравиться?:");
-string? calibr = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine($"Локация: {location}");
-Console.WriteLine($"Оружие: {FavWeapon}");
-Console.WriteLine($"Калибр: {calibr}");
+﻿using System.Reflection.Metadata.Ecma335;
 
-if (calibr == "5.56")
+string[] Listweapons = new string[] { "M4A1", "AK74", "AXMC", "SIG SPEAR" };
+string[] Listmaps = { "Резерв", "Таможня", "Развязка", "Берег" };
+const int maxtry = 4;
+for (int s = 0; s < maxtry; s++)
 {
-    Console.WriteLine("Натовская пятёрка - классика");
-}
-else
-{
-    Console.WriteLine("Неплохой вкус");
-}
+    Console.WriteLine("\nВыбери тип запроса:");
+    Console.WriteLine("1 - Инфо о локации");
+    Console.WriteLine("2 - Инфо об оружии");
+    Console.WriteLine("0 - выход");
+    Console.Write("Твой выбор");
+    string? choice = Console.ReadLine();
 
-if (FavWeapon == "M4A1")
+    if (choice == "0")
+    {
+        Console.WriteLine("Выход из программы. Удачи в рейде!");
+        break;
+    }
+    else if (choice == "1")
+    {
+        Console.Write("Введи название локации:");
+        string? location = Console.ReadLine();
+        if (location != null && Contains(Listmaps, location))
+        {
+            Printlocation(location);
+        }
+        else
+        {
+            Console.WriteLine($"Локация '{location}' не найдена в списке");
+        }
+
+    }
+    else if (choice == "2")
+    {
+        Console.Write("Введи название оружия: ");
+        string? weapon = Console.ReadLine();
+        if (weapon != null && Contains(Listweapons, weapon))
+        {
+            PrintWeaponinfo(weapon);
+        }
+        else
+        {
+            Console.WriteLine($"Оружие '{weapon}' отсутствует в базе.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Неверный ввод. Попробуйте снова.");
+    }
+}
+static bool Contains(string[] array, string item)
 {
-    Console.WriteLine("Не стареющаяя классика");
+    foreach (string element in array)
+    {
+        if (element == item) return true;
+    }
+    return false;
 }
-else
-{ 
-    Console.WriteLine("Отличный выбор");
-}
-if (location == "Резерв")
+static void PrintWeaponinfo(string weapon)
 {
-    Console.WriteLine("Карта где больше всего меченок, самое то для пвп и фарма");
+    if (weapon == "M4A1")
+        Console.WriteLine("M4A1 — стабильная классика НАТО.");
+    else if (weapon == "AK74")
+        Console.WriteLine("AK74 — надёжный друг советского разлива.");
+    else
+        Console.WriteLine($"{weapon} — достойный выбор.");
 }
-else if (location == "Лаборатория")
+static void Printlocation(string location)
 {
-    Console.WriteLine("да ты у нас киберспортсмен");
+    if (location == "Таможня")
+        Console.WriteLine("Пвп в общагах это топ");
+    else if (location == "Резерв")
+        Console.WriteLine("Бегом в меченки");
+    else
+        Console.WriteLine($"{location} - Хорошая карта");
 }
-else
-{
-    Console.WriteLine("Хорошая локация");
-}
-Console.ReadKey();
