@@ -1,9 +1,9 @@
 ﻿public class GameEntity
 {
-    public string _name = "Unknown";
+    private string _name = "Unknown";
     private static int _entityCount = 0;
     public static int EntityCount => _entityCount;
-        public string GeName
+        public string Name
     {
         get => _name;
         set
@@ -16,8 +16,9 @@
         }
 
     }
-    public string UnqName(string name)
+    public GameEntity (string name)
     {
-        GeName = name;
+        Name = name;
+        _entityCount++;
     }
 }

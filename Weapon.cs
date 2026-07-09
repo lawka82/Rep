@@ -1,44 +1,44 @@
-﻿class Weapon
+﻿public class Weapon : GameEntity
 {
-    private string _name = "Unknown";
     private string _caliber = "Unknown";
     private int _damage = 0;
     private static int _weaponCount = 0;
-    public Weapon(string name, string caliber, int damage)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            name = "Unknown";
-            Console.WriteLine("Неверный ввод");
-        }
-        else
-        {
-            _name = name;
-        }
-        if (string.IsNullOrWhiteSpace(caliber))
-        {
-            caliber = "Unknown";
-            Console.WriteLine("Неверный ввод");
+    public static int WeaponCount => _weaponCount;
 
-        }
-        else
+    public string Caliber
+    {
+        get => _caliber;
+        set
         {
-            _caliber = caliber;
+            if (string.IsNullOrWhiteSpace(value))
+                _caliber = "Unknown";
+            else
+                _caliber = value;
         }
-        if ( damage < 0)
+    }
+
+    public int Damage
+    {
+        get => _damage;
+        set
         {
-            damage = 0;
-            Console.WriteLine("Урон меньше нуля");
+            if (value >= 0)
+                _damage = value;
+            else
+                _damage = 0;
         }
-        else
-        {
-            _damage = damage;
-        }
+    }
+
+    public Weapon(string name, string caliber, int damage) : base(name)
+    {
+        Caliber = caliber;
+        Damage = damage;
         _weaponCount++;
     }
+
     public void PrintWeaponInfo()
     {
-        Console.WriteLine($"Name: {_name}");
+        Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Caliber: {_caliber}");
         Console.WriteLine($"Damage: {_damage}");
         Console.WriteLine($"Weapon count: {_weaponCount}");
